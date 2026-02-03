@@ -32,8 +32,8 @@
         }
 
         .close-btn:hover {
-            background: white;
-            color: #ff1493;
+            background: rgb(255, 0, 191);
+            color: #ff0000;
             transform: rotate(90deg);
         }
 
@@ -42,11 +42,11 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgb(255, 0, 153);
+            background: rgb(255, 0, 247);
             padding: 15px 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 2px 20px rgba(255, 83, 169, 0.3);
         }
 
         nav ul {
@@ -74,9 +74,11 @@
         }
 
         body {
+            --mouse-x: 50vw;
+            --mouse-y: 50vh;
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(45deg, #ff0080, #ffc0cb, #ff1493);
+            background: linear-gradient(45deg, #ffa4f3, #ffffff);
             background-size: 400% 400%;
             animation: gradientShift 10s ease infinite;
             display: flex;
@@ -87,6 +89,21 @@
             padding-top: 80px;
             padding-bottom: 50px;
         }
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), 
+                    rgb(255, 185, 185), 
+                    transparent 95%);
+    pointer-events: none;
+    z-index: -1;
+}
+
 
         @keyframes gradientShift {
             0% {
@@ -286,7 +303,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #222;
+            background: #ff6868;
             z-index: 99999;
             cursor: crosshair;
         }
@@ -359,7 +376,7 @@
 <body>
     <nav id="navbar">
         <ul>
-            <li><a href="#pytanie">💖 Pytanie</a></li>
+            <li><a href="#pytanie">💖 Question</a></li>
             <li><a href="#minigra">🎉 Mini - gra</a></li>
             <li><a href="#quiz">🧠 Quiz</a></li>
         </ul>
@@ -383,7 +400,7 @@
         <div class="hearts" id="hearts"></div>
     </div>
 
-    <div style="height: 50vh;"></div>
+    <div style="height: 20vh;"></div>
 
     <div class="frame" id="minigra" style="margin-top: 50px;">
         <h2>🎮 Minigra: Łapanie gordzusen</h2>
@@ -408,7 +425,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(3)">D</button>
             </div>
             
-            <p style="color: #888; font-size: 14px;">Pytanie: <span id="q-number">1</span>/5</p>
+            <p style="color: #888; font-size: 14px;">Pytanie: <span id="q-number">1</span>/11</p>
         </div>
 
         <!-- Ekran wyniku (ukryty) -->
@@ -444,6 +461,74 @@
 
 
     <script>
+
+
+                /* --- KOD QUIZU --- */
+const questions = [
+    // --- STARE PYTANIA (zostawiamy na początek) ---
+    {
+        q: "Który hormon nazywany jest 'hormonem miłości'?",
+        options: ["Adrenalina", "Oksytocyna", "Insulina", "Kofeina"],
+        correct: 1
+    },
+    {
+        q: "Skąd wzięła się tradycja Walentynek?",
+        options: ["Z USA", "Z Chin", "Z Cesarstwa Rzymskiego", "Z Sosnowca"],
+        correct: 2
+    },
+    
+    // --- NOWE CIEKAWOSTKI (10 sztuk) ---
+    {
+        q: "Ile kartek walentynkowych wysyła się rocznie na świecie?",
+        options: ["Około 1 miliona", "Około 100 milionów", "Około 1 miliarda", "Tylko jedną (tą do Ciebie😉)"],
+        correct: 2 // 1 miliard
+    },
+    {
+        q: "W którym kraju Walentynki są zakazane?",
+        options: ["W Japonii", "W Arabii Saudyjskiej", "W Kanadzie", "W Brazylii"],
+        correct: 1 // Arabia Saudyjska (choć poluzowali, kiedyś było surowo)
+    },
+    {
+        q: "Jaki ptak jest symbolem wierności, bo łączy się w pary na całe życie?",
+        options: ["Wróbel", "Łabędź", "Kfc", "Gołąb srający na głowę"],
+        correct: 1 // Łabędź
+    },
+    {
+        q: "Które miasto nazywane jest 'Miastem Zakochanych'?",
+        options: ["Radom", "Paryż", "Nowy Jork", "Berlin"],
+        correct: 1 // Paryż
+    },
+    {
+        q: "Kto jest mitycznym synem bogini Wenus?",
+        options: ["Herkules", "Mars", "Amor (Kupidyn)", "Zeus"],
+        correct: 2 // Amor
+    },
+    {
+        q: "Najstarszy zachowany list walentynkowy pochodzi z...?",
+        options: ["XIX wieku", "XV wieku", "XX wieku", "Roku 2020"],
+        correct: 1 // XV wiek (od Karola Orleańskiego z więzienia)
+    },
+    {
+        q: "Jaki kolor róży oznacza 'tylko przyjaźń? (podpowiedź: chujowy)",
+        options: ["Czerwony", "Żółty", "Biały", "Różowy"],
+        correct: 1 // Żółty
+    },
+
+    // --- NOWE KOMPLEMENTY (4 sztuki - wszystkie odp poprawne!) ---
+    {
+        q: "Co w Tobie najbardziej lubię?",
+        options: ["Twój uśmiech", "Twoje oczy", "Twoje serduszko", "Wszystko!"],
+        correct: 99 // Kod specjalny (wszystkie poprawne)
+    },
+    // --- OSTATNIE PYTANIE (FINAŁ) ---
+    {
+        q: "Kto jest most hot und gogreous osobą na świecie?",
+        options: ["Julia Julstyna Wojdyła", "Juleczka fryteczka", "doch po co pytac", "WSZYSTKIE ODPOWIEDZI SĄ POPRAWNE!"],
+        correct: 99
+    }
+];
+
+
         const noBtn = document.getElementById('noBtn');
         let dodgeCount = 0;
         const maxDodges = 10;
@@ -774,35 +859,6 @@
             }
         }
 
-                /* --- KOD QUIZU --- */
-        const questions = [
-            {
-                q: "Który hormon nazywany jest 'hormonem miłości'?",
-                options: ["Adrenalina", "Oksytocyna", "Insulina", "Kofeina"],
-                correct: 1 // Oksytocyna
-            },
-            {
-                q: "Skąd wzięła się tradycja Walentynek?",
-                options: ["Z USA", "Z Chin", "Z Cesarstwa Rzymskiego", "Z Sosnowca"],
-                correct: 2 // Rzym
-            },
-            {
-                q: "Co oznacza czerwona róża?",
-                options: ["Zazdrość", "Przyjaźń", "Namiętną miłość", "Że była promocja"],
-                correct: 2 // Miłość
-            },
-            {
-                q: "Gdzie najlepiej zabrać Walentynkę?",
-                options: ["Na mecz", "Do kina", "Na kebaba", "Tam gdzie Ona chce"],
-                correct: 3 // Tam gdzie chce (jedyna słuszna odp!)
-            },
-            {
-                q: "Kto jest najfajniejszą osobą na świecie?",
-                options: ["Ty!", "Też Ty!", "Zdecydowanie Ty!", "No jasne że Ty!"],
-                correct: 0 // Wszystkie są poprawne, ale kodowo 0
-            }
-        ];
-
         let currentQIndex = 0;
         let quizScore = 0;
         let canClick = true;
@@ -831,10 +887,13 @@
             if (!canClick) return;
             canClick = false;
 
+            // Zabezpieczenie przed błędem undefined
+            if (!questions[currentQIndex]) return;
+
             const correctOption = questions[currentQIndex].correct;
 
-            // Specjalny przypadek dla ostatniego pytania (wszystkie poprawne)
-            if (currentQIndex === 4) {
+            // Obsługa pytań specjalnych (99) i zwykłych
+            if (questions[currentQIndex].correct === 99) {
                 qBtns[selectedOption].classList.add('correct');
                 quizScore++;
             } else {
@@ -843,11 +902,13 @@
                     quizScore++;
                 } else {
                     qBtns[selectedOption].classList.add('wrong');
-                    qBtns[correctOption].classList.add('correct'); // pokaż poprawną
+                    // Pokaż poprawną (jeśli istnieje taki przycisk)
+                    if(qBtns[correctOption]) {
+                        qBtns[correctOption].classList.add('correct');
+                    }
                 }
             }
 
-            // Czekaj 1.5 sekundy i daj następne
             setTimeout(() => {
                 currentQIndex++;
                 if (currentQIndex < questions.length) {
@@ -857,6 +918,7 @@
                 }
             }, 1500);
         }
+
 
         function showQuizResult() {
             document.getElementById('quiz-box').style.display = 'none';
@@ -871,13 +933,20 @@
             document.getElementById('quiz-comment').innerText = comment;
         }
 
-        function resetQuiz() {
-            currentQIndex = 0;
-            quizScore = 0;
-            document.getElementById('quiz-box').style.display = 'block';
-            document.getElementById('quiz-result').style.display = 'none';
-            loadQuestion();
-        }
+function resetQuiz() {
+    currentQIndex = 0;
+    quizScore = 0;
+    document.getElementById('quiz-box').style.display = 'block';
+    document.getElementById('quiz-result').style.display = 'none';
+    loadQuestion();
+}
+
+    // GRADIENT ŚLEDZĄCY MYSZKĘ
+document.addEventListener('mousemove', (e) => {
+    document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+    document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+});
+
 
     </script>
 </body>
