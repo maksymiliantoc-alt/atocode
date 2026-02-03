@@ -44,19 +44,24 @@
         }
 
         body {
-            margin: 0;
-            min-height: 100vh;
-            background: linear-gradient(45deg, #ff0080, #ffc0cb, #ff1493);
-            background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            position: relative;
-            padding-top: 80px;
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(45deg, #ff0080, #ffc0cb, #ff1493);
+        background-size: 400% 400%;
+        animation: gradientShift 10s ease infinite;
+    
+        /* TU ZMIANA: układaj pionowo */
+        display: flex;
+        flex-direction: column;  /* <--- TO JEST KLUCZOWE */
+        align-items: center;
+    
+        font-family: 'Poppins', sans-serif;
+        /* overflow: hidden;  <--- USUŃ LUB ZAKOMENTUJ TO, żeby dało się przewijać */
+        position: relative;
+        padding-top: 80px;
+        padding-bottom: 50px; /* Dodatkowy margines na dole */
         }
+
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -197,9 +202,11 @@
     <nav id="navbar">
         <ul>
             <li><a href="#pytanie">💖 Pytanie</a></li>
-            <li><a href="#success">🎉 Odpowiedź</a></li>
+            <li><a href="#minigry">🎉 minigry</a></li>
         </ul>
     </nav>
+
+        <div style="height: 15vh;"></div>
 
     <div class="frame" id="pytanie">
         <img class="top-img" src="1000050280.jpg" alt="Twój obrazek" onerror="this.style.display='none';">
@@ -215,6 +222,21 @@
         <img src="depositphotos_99254340-stock-illustration-emoticons-kissing-with-heart.jpg" alt="YEY!">
         <div class="hearts" id="hearts"></div>
     </div>
+
+    <!-- ODSTĘP (np. 800 pikseli pustego miejsca) -->
+    <div style="height: 50vh;"></div>
+
+    <!-- NOWA SEKCJA MINIGIER -->
+    <div class="frame" id="minigry">
+        <h2>🎮 Minigry Walentynkowe</h2>
+        <p>jakis qiuz i minigry :*</p>
+        <!-- Tu w przyszłości wkleisz kod gry -->
+        <button class="yes-btn" style="font-size: 16px; padding: 10px 20px;">Zagraj!</button>
+    </div>
+
+<!-- ODSTĘP NA DOLE (żeby można było swobodnie przewijać) -->
+<div style="height: 20vh;"></div>
+
 
     <script>
         const noBtn = document.getElementById('noBtn');
