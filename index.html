@@ -1,17 +1,28 @@
 <!DOCTYPE html>
+<!-- Strona "Czy zostaniesz moją walentynką?"-->
 <html lang="pl">
 
 <head>
+    <!-- Podstawowe meta tagi dla kodowania i responsywności strony -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Tytuł strony wyświetlany w karcie przeglądarki -->
     <title>Czy zostaniesz moją walentynką?</title>
+    
+    <!-- Ikonka strony (emoji serca) wyświetlana w karcie przeglądarki -->
     <link rel="icon" href="https://emojicdn.elk.sh/❤️">
+    
+    <!-- Importowanie czcionki Poppins z Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* Gładkie przewijanie strony */
         * {
             scroll-behavior: smooth;
         }
 
+        /* Przycisk zamknięcia (X) w prawym górnym rogu wyskakujących okien */
         .close-btn {
             position: absolute;
             top: 20px;
@@ -31,12 +42,14 @@
             transition: all 0.3s;
         }
 
+        /* Efekt hover na przycisku zamknięcia */
         .close-btn:hover {
             background: rgb(255, 0, 191);
             color: #ff0000;
             transform: rotate(90deg);
         }
 
+        /* Pasek nawigacji na górze strony */
         nav {
             position: fixed;
             top: 0;
@@ -49,6 +62,7 @@
             box-shadow: 0 2px 20px rgba(255, 83, 169, 0.3);
         }
 
+        /* Lista linków w nawigacji */
         nav ul {
             list-style: none;
             margin: 0;
@@ -58,6 +72,7 @@
             gap: 30px;
         }
 
+        /* Stylizacja pojedynczych linków w nawigacji */
         nav a {
             color: white;
             text-decoration: none;
@@ -68,17 +83,19 @@
             transition: all 0.3s;
         }
 
+        /* Efekt hover na linkach w nawigacji */
         nav a:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
         }
 
+        /* Główny styl body - tło gradientu animowanego */
         body {
             --mouse-x: 50vw;
             --mouse-y: 50vh;
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(45deg, #ffa4f3, #ffffff);
+            background: linear-gradient(45deg, #ff0080, #ffffff, #ff2eff);
             background-size: 400% 400%;
             animation: gradientShift 10s ease infinite;
             display: flex;
@@ -90,21 +107,23 @@
             padding-bottom: 50px;
         }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), 
-                    rgb(255, 185, 185), 
-                    transparent 95%);
-    pointer-events: none;
-    z-index: -1;
-}
+        /* Światło śledzące kursor myszy */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y),
+                            rgb(255, 255, 255),
+                            transparent 95%);
+            pointer-events: none;
+            z-index: -1;
+        }
 
 
+        /* Animacja przesuwającego się gradientu w tle */
         @keyframes gradientShift {
             0% {
                 background-position: 0% 50%;
@@ -117,12 +136,13 @@ body::before {
             }
         }
 
+        /* Główny kontener na zawartość strony */
         .frame {
-            background: rgba(255, 255, 255, 0.95);
-            border: 5px solid #ff69b4;
+            background: rgba(255, 255, 255, 0.98);
+            border: 5px solid #ff1493;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4);
             text-align: center;
             max-width: 500px;
             width: 90%;
@@ -130,6 +150,7 @@ body::before {
             overflow: hidden;
         }
 
+        /* Górny obraz w ramce */
         .frame img.top-img {
             max-width: 100%;
             height: 200px;
@@ -138,13 +159,42 @@ body::before {
             margin-bottom: 20px;
         }
 
-                /* STYLE DLA QUIZU */
+        /* Siatka galerii zdjęć */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Pojedyncze zdjęcie w galerii */
+        .gallery-item {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #ff69b4;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Efekt hover na zdjęciach w galerii */
+        .gallery-item:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 10px 20px rgba(255, 20, 147, 0.4);
+            z-index: 10;
+            border-color: #ff1493;
+        }
+
+        /* Siatka przycisków quizu (2 kolumny) */
         .quiz-options {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
             margin: 20px 0;
         }
+
+        /* Przycisk odpowiedzi w quizie */
         .quiz-btn {
             padding: 15px;
             border: 2px solid #ff69b4;
@@ -157,15 +207,28 @@ body::before {
             font-size: 16px;
             transition: 0.3s;
         }
+
+        /* Efekt hover na przyciskach quizu */
         .quiz-btn:hover {
             background: #ffe6f2;
             transform: scale(1.05);
         }
-        /* Kolory po kliknięciu */
-        .correct { background: #32cd32 !important; color: white !important; border-color: #32cd32 !important; }
-        .wrong { background: #ff4444 !important; color: white !important; border-color: #ff4444 !important; }
 
+        /* Kolor zielony dla poprawnej odpowiedzi */
+        .correct {
+            background: #32cd32 !important;
+            color: white !important;
+            border-color: #32cd32 !important;
+        }
 
+        /* Kolor czerwony dla błędnej odpowiedzi */
+        .wrong {
+            background: #ff4444 !important;
+            color: white !important;
+            border-color: #ff4444 !important;
+        }
+
+        /* Pytanie główne */
         .question {
             font-size: 28px;
             color: #ff1493;
@@ -173,6 +236,7 @@ body::before {
             font-weight: 700;
         }
 
+        /* Kontener na przyciski TAK/NIE */
         .buttons {
             display: flex;
             justify-content: space-around;
@@ -181,6 +245,7 @@ body::before {
             height: 80px;
         }
 
+        /* Przyciski TAK/NIE - wspólne właściwości */
         .yes-btn,
         .no-btn {
             position: relative;
@@ -188,6 +253,7 @@ body::before {
             max-width: 150px;
         }
 
+        /* Przycisk TAK - główny, gradient różowy */
         .yes-btn {
             background: linear-gradient(45deg, #ff69b4, #ff1493);
             color: white;
@@ -201,11 +267,13 @@ body::before {
             transition: all 0.3s ease;
         }
 
+        /* Efekt hover na przycisku TAK */
         .yes-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 30px rgba(255, 105, 180, 0.6);
         }
 
+        /* Przycisk NIE - szary, ucieka od kursora */
         .no-btn {
             background: #ddd;
             color: #888;
@@ -221,10 +289,12 @@ body::before {
             will-change: transform;
         }
 
+        /* Efekt hover na przycisku NIE */
         .no-btn:hover {
             transform: scale(1.1) translateY(-5px);
         }
 
+        /* Ekran sukcesu (pojawia się po kliknięciu TAK) */
         .success {
             position: fixed;
             top: 0;
@@ -242,6 +312,7 @@ body::before {
             box-sizing: border-box;
         }
 
+        /* Tytuł na ekranie sukcesu z efektem świecenia */
         .success-title {
             color: white;
             font-size: 36px;
@@ -252,6 +323,7 @@ body::before {
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
         }
 
+        /* Animacja świecenia tekstu */
         @keyframes glow {
             from {
                 text-shadow: 0 0 8px rgba(255, 255, 255, 0.35), 0 0 14px rgba(255, 20, 147, 0.35);
@@ -261,6 +333,7 @@ body::before {
             }
         }
 
+        /* Obraz na ekranie sukcesu */
         .success img {
             max-width: 80%;
             max-height: 60%;
@@ -268,6 +341,7 @@ body::before {
             margin-bottom: 20px;
         }
 
+        /* Kontener na spadające serduszka */
         .hearts {
             position: fixed;
             top: 0;
@@ -278,6 +352,7 @@ body::before {
             z-index: 50;
         }
 
+        /* Pojedyncze serduszko do animacji */
         .heart {
             position: absolute;
             color: #ff69b4;
@@ -285,6 +360,7 @@ body::before {
             animation: fall linear infinite;
         }
 
+        /* Animacja spadających serduszek */
         @keyframes fall {
             0% {
                 transform: translateY(-100vh) rotate(0deg);
@@ -296,6 +372,7 @@ body::before {
             }
         }
 
+        /* Kontener na minigę (pełny ekran) */
         #gameContainer {
             display: none;
             position: fixed;
@@ -308,12 +385,14 @@ body::before {
             cursor: crosshair;
         }
 
+        /* Canvas na grę */
         canvas {
             display: block;
             width: 100%;
             height: 100%;
         }
 
+        /* Wyświetlanie wyników (wynik i czas) w lewym górnym rogu gry */
         #gameUI {
             position: absolute;
             top: 20px;
@@ -325,6 +404,7 @@ body::before {
             pointer-events: none;
         }
 
+        /* Przycisk zamknięcia gry w prawym górnym rogu */
         #closeGameBtn {
             position: absolute;
             top: 20px;
@@ -342,11 +422,13 @@ body::before {
             align-items: center;
         }
 
+        /* Efekt hover na przycisku zamknięcia gry */
         #closeGameBtn:hover {
             background: red;
             border-color: red;
         }
 
+        /* Ekran końca gry (wynik, rekord, przyciski) */
         #gameOverScreen {
             display: none;
             position: absolute;
@@ -361,11 +443,13 @@ body::before {
             box-shadow: 0 0 50px rgba(255, 20, 147, 0.5);
         }
 
+        /* Tytuł na ekranie końca gry */
         #gameOverScreen h1 {
             color: #ff1493;
             margin-top: 0;
         }
 
+        /* Tekst na ekranie końca gry */
         #gameOverScreen p {
             font-size: 20px;
             color: #333;
@@ -374,207 +458,339 @@ body::before {
 </head>
 
 <body>
+    <!-- Pasek nawigacji na górze strony z linkami do sekcji -->
     <nav id="navbar">
         <ul>
+            <!-- Link do głównego pytania -->
             <li><a href="#pytanie">💖 Question</a></li>
+            
+            <!-- Link do minigry -->
             <li><a href="#minigra">🎉 Mini - gra</a></li>
+            
+            <!-- Link do quizu -->
             <li><a href="#quiz">🧠 Quiz</a></li>
+            
+            <!-- Link do galerii zdjęć -->
+            <li><a href="#galeria">📸 Galeria</a></li>
         </ul>
     </nav>
 
+    <!-- Pustka (spacing) przed głównym pytaniem -->
     <div style="height: 20vh;"></div>
 
+    <!-- Główna sekcja z pytaniem głównym i przyciskami TAK/NIE -->
     <div class="frame" id="pytanie">
+        <!-- Górny obraz walentynkowy -->
         <img class="top-img" src="1000050280.jpg" alt="Twój obrazek" onerror="this.style.display='none';">
+        
+        <!-- Tekst głównego pytania -->
         <div class="question">Czy zostaniesz moją walentynką?</div>
+        
+        <!-- Przyciski TAK i NIE -->
         <div class="buttons">
             <button class="yes-btn" onclick="yesClick()">YES OFC</button>
             <button class="no-btn" id="noBtn" onclick="noClick()">nie :(</button>
         </div>
     </div>
 
+    <!-- Pustka (spacing) między sekcjami -->
+    <div style="height: 15vh;"></div>
+
+    <!-- Sekcja galerii zdjęć walentynkowych -->
+    <div class="frame" id="galeria">
+        <!-- Tytuł galerii -->
+        <h2>📸 Nasze Najpiękniejsze Chwile</h2>
+        
+        <!-- Podtytuł galerii -->
+        <p style="margin-bottom: 20px;">Softy ❤️</p>
+
+        <!-- Siatka zdjęć w galerii -->
+        <div class="gallery-grid">
+            <!-- Pierwsze zdjęcie z galerii -->
+            <img src="fotka1.jpg" alt="My 1" class="gallery-item">
+            
+            <!-- Drugie zdjęcie z galerii -->
+            <img src="fotka2.jpg" alt="My 2" class="gallery-item">
+            
+            <!-- Trzecie zdjęcie z galerii -->
+            <img src="fotka3.jpg" alt="My 3" class="gallery-item">
+            
+            <!-- Czwarte zdjęcie z galerii -->
+            <img src="fotka4.jpg" alt="My 4" class="gallery-item">
+            
+            <!-- Piąte zdjęcie z galerii -->
+            <img src="fotka5.jpg" alt="My 5" class="gallery-item">
+            
+            <!-- Szóste zdjęcie z galerii -->
+            <img src="fotka6.jpg" alt="My 6" class="gallery-item">
+        </div>
+    </div>
+
+    <!-- Ekran sukcesu - pojawia się po kliknięciu TAK -->
     <div class="success" id="success">
+        <!-- Przycisk zamknięcia ekranu sukcesu -->
         <button class="close-btn" onclick="closeSuccess()">×</button>
-        <h2 class="success-title" id="customText">Mój autorski napis tutaj 💕</h2>
+        
+        <!-- Wiadomość na ekranie sukcesu -->
+        <h2 class="success-title" id="customText">looooooooooooooovki💕</h2>
+        
+        <!-- Obraz radości na ekranie sukcesu -->
         <img src="depositphotos_99254340-stock-illustration-emoticons-kissing-with-heart.jpg" alt="YEY!">
+        
+        <!-- Kontener na spadające serduszka -->
         <div class="hearts" id="hearts"></div>
     </div>
 
+    <!-- Pustka (spacing) między sekcjami -->
     <div style="height: 20vh;"></div>
 
+    <!-- Sekcja minigry - łapanie serduszek -->
     <div class="frame" id="minigra" style="margin-top: 50px;">
+        <!-- Tytuł minigry -->
         <h2>🎮 Minigra: Łapanie gordzusen</h2>
+        
+        <!-- Opis minigry -->
         <p>Strzelaj sercami w spadającą gordzus!</p>
+        
+        <!-- Przycisk do uruchomienia minigry -->
         <button class="yes-btn" onclick="startArcheryGame()" style="padding: 15px 30px; font-size: 18px;">💘 Złap gordzusen!</button>
     </div>
 
-        <!-- ODSTĘP -->
+    <!-- Pustka (spacing) między sekcjami -->
     <div style="height: 20vh;"></div>
 
-    <!-- SEKCJA QUIZU -->
+    <!-- Sekcja quizu walentynkowego -->
     <div class="frame" id="quiz">
-        <h2>🧠 Walentynkowy Quiz</h2>
-        
+        <!-- Tytuł quizu -->
+        <h2>🧠</h2>
+
+        <!-- Kontener pytań i odpowiedzi quizu -->
         <div id="quiz-box">
+            <!-- Tekst pytania -->
             <p id="quiz-question" style="font-size: 20px; margin-bottom: 20px;">Ładowanie pytań...</p>
-            
+
+            <!-- Cztery przyciski z odpowiedziami -->
             <div class="quiz-options">
+                <!-- Odpowiedź A -->
                 <button class="quiz-btn" onclick="checkAnswer(0)">A</button>
+                
+                <!-- Odpowiedź B -->
                 <button class="quiz-btn" onclick="checkAnswer(1)">B</button>
+                
+                <!-- Odpowiedź C -->
                 <button class="quiz-btn" onclick="checkAnswer(2)">C</button>
+                
+                <!-- Odpowiedź D -->
                 <button class="quiz-btn" onclick="checkAnswer(3)">D</button>
             </div>
-            
+
+            <!-- Licznik pytań quizu -->
             <p style="color: #888; font-size: 14px;">Pytanie: <span id="q-number">1</span>/11</p>
         </div>
 
-        <!-- Ekran wyniku (ukryty) -->
+        <!-- Ekran wyniku quizu (ukryty, pojawia się po zakończeniu) -->
         <div id="quiz-result" style="display: none;">
+            <!-- Tytuł wyniku -->
             <h3>Koniec Quizu! 🎉</h3>
+            
+            <!-- Wynik quizu -->
             <p style="font-size: 24px;">Twój wynik: <span id="quiz-score">0</span>/5</p>
+            
+            <!-- Komentarz do wyniku -->
             <p id="quiz-comment" style="color: #ff1493; font-weight: bold;"></p>
+            
+            <!-- Przycisk do powtórzenia quizu -->
             <button class="yes-btn" onclick="resetQuiz()" style="font-size: 16px; padding: 10px 20px;">Zagraj jeszcze raz</button>
         </div>
     </div>
 
-
+    <!-- Kontener na minigę - pełny ekran -->
     <div id="gameContainer">
+        <!-- Canvas na grę -->
         <canvas id="gameCanvas"></canvas>
+        
+        <!-- Wyświetlanie wyniku i czasu gry -->
         <div id="gameUI">
-        <div id="scoreBoard">Gordzusen: <span id="scoreVal">0</span></div> 
-        <div id="timerBoard">Czas: <span id="timeVal">30</span>s</div>
-
+            <!-- Liczba złapanych serduszek -->
+            <div id="scoreBoard">Gordzusen: <span id="scoreVal">0</span></div>
+            
+            <!-- Czas pozostały w grze -->
+            <div id="timerBoard">Czas: <span id="timeVal">30</span>s</div>
         </div>
+        
+        <!-- Ekran końca gry -->
         <div id="gameOverScreen">
+            <!-- Tytuł końca gry -->
             <h1>Koniec Czasu! 💘</h1>
+            
+            <!-- Uzyskany wynik -->
             <p>Twój wynik: <span id="finalScore">0</span></p>
+            
+            <!-- Rekord gry -->
             <p>Rekord: <span id="bestScore">0</span></p>
+            
+            <!-- Przycisk do powtórzenia gry -->
             <button class="yes-btn" onclick="restartGame()">Zagraj ponownie</button>
+            
+            <!-- Przycisk do wyjścia z gry -->
             <button class="no-btn" onclick="exitGame()">Wyjdź</button>
         </div>
+        
+        <!-- Przycisk zamknięcia gry -->
         <button id="closeGameBtn" onclick="exitGame()">×</button>
     </div>
 
+    <!-- Obraz do minigry (niedostępny do wyświetlenia, używany w canvas) -->
     <img id="targetImg" src="wowwow.png" style="display:none;">
 
+    <!-- Pustka (spacing) na końcu strony -->
     <div style="height: 20vh;"></div>
 
-
+    <!-- Wszystkie skrypty JavaScript -->
     <script>
 
 
-                /* --- KOD QUIZU --- */
-const questions = [
-    // --- STARE PYTANIA (zostawiamy na początek) ---
-    {
-        q: "Który hormon nazywany jest 'hormonem miłości'?",
-        options: ["Adrenalina", "Oksytocyna", "Insulina", "Kofeina"],
-        correct: 1
-    },
-    {
-        q: "Skąd wzięła się tradycja Walentynek?",
-        options: ["Z USA", "Z Chin", "Z Cesarstwa Rzymskiego", "Z Sosnowca"],
-        correct: 2
-    },
-    
-    // --- NOWE CIEKAWOSTKI (10 sztuk) ---
-    {
-        q: "Ile kartek walentynkowych wysyła się rocznie na świecie?",
-        options: ["Około 1 miliona", "Około 100 milionów", "Około 1 miliarda", "Tylko jedną (tą do Ciebie😉)"],
-        correct: 2 // 1 miliard
-    },
-    {
-        q: "W którym kraju Walentynki są zakazane?",
-        options: ["W Japonii", "W Arabii Saudyjskiej", "W Kanadzie", "W Brazylii"],
-        correct: 1 // Arabia Saudyjska (choć poluzowali, kiedyś było surowo)
-    },
-    {
-        q: "Jaki ptak jest symbolem wierności, bo łączy się w pary na całe życie?",
-        options: ["Wróbel", "Łabędź", "Kfc", "Gołąb srający na głowę"],
-        correct: 1 // Łabędź
-    },
-    {
-        q: "Które miasto nazywane jest 'Miastem Zakochanych'?",
-        options: ["Radom", "Paryż", "Nowy Jork", "Berlin"],
-        correct: 1 // Paryż
-    },
-    {
-        q: "Kto jest mitycznym synem bogini Wenus?",
-        options: ["Herkules", "Mars", "Amor (Kupidyn)", "Zeus"],
-        correct: 2 // Amor
-    },
-    {
-        q: "Najstarszy zachowany list walentynkowy pochodzi z...?",
-        options: ["XIX wieku", "XV wieku", "XX wieku", "Roku 2020"],
-        correct: 1 // XV wiek (od Karola Orleańskiego z więzienia)
-    },
-    {
-        q: "Jaki kolor róży oznacza 'tylko przyjaźń? (podpowiedź: chujowy)",
-        options: ["Czerwony", "Żółty", "Biały", "Różowy"],
-        correct: 1 // Żółty
-    },
+        /* ============================================
+           SEKCJA QUIZU - DANE I LOGIKA
+           ============================================ */
 
-    // --- NOWE KOMPLEMENTY (4 sztuki - wszystkie odp poprawne!) ---
-    {
-        q: "Co w Tobie najbardziej lubię?",
-        options: ["Twój uśmiech", "Twoje oczy", "Twoje serduszko", "Wszystko!"],
-        correct: 99 // Kod specjalny (wszystkie poprawne)
-    },
-    // --- OSTATNIE PYTANIE (FINAŁ) ---
-    {
-        q: "Kto jest most hot und gogreous osobą na świecie?",
-        options: ["Julia Julstyna Wojdyła", "Juleczka fryteczka", "doch po co pytac", "WSZYSTKIE ODPOWIEDZI SĄ POPRAWNE!"],
-        correct: 99
-    }
-];
+        /* Tablica z pytaniami quizu, opcjami odpowiedzi i wskazaniem prawidłowej odpowiedzi */
+        const questions = [
+            /* Początkowe pytania o walentynkach i miłości */
+            {
+                q: "Który hormon nazywany jest 'hormonem miłości'?",
+                options: ["Adrenalina", "Oksytocyna", "Insulina", "Kofeina"],
+                correct: 1
+            },
+            {
+                q: "Skąd wzięła się tradycja Walentynek?",
+                options: ["Z USA", "Z Chin", "Z Cesarstwa Rzymskiego", "Z Sosnowca"],
+                correct: 2
+            },
 
+            /* Ciekawostki o Walentynkach na całym świecie */
+            {
+                q: "Ile kartek walentynkowych wysyła się rocznie na świecie?",
+                options: ["Około 1 miliona", "Około 100 milionów", "Około 1 miliarda", "Tylko jedną (tą do Ciebie😉)"],
+                correct: 2
+            },
+            {
+                q: "W którym kraju Walentynki są zakazane?",
+                options: ["W Japonii", "W Arabii Saudyjskiej", "W Kanadzie", "W Brazylii"],
+                correct: 1
+            },
+            {
+                q: "Jaki ptak jest symbolem wierności, bo łączy się w pary na całe życie?",
+                options: ["Wróbel", "Łabędź", "Kfc", "Gołąb srający na głowę"],
+                correct: 1
+            },
+            {
+                q: "Które miasto nazywane jest 'Miastem Zakochanych'?",
+                options: ["Radom", "Paryż", "Nowy Jork", "Berlin"],
+                correct: 1
+            },
+            {
+                q: "Kto jest mitycznym synem bogini Wenus?",
+                options: ["Herkules", "Mars", "Amor (Kupidyn)", "Zeus"],
+                correct: 2
+            },
+            {
+                q: "Najstarszy zachowany list walentynkowy pochodzi z...?",
+                options: ["XIX wieku", "XV wieku", "XX wieku", "Roku 2020"],
+                correct: 1
+            },
+            {
+                q: "Jaki kolor róży oznacza 'tylko przyjaźń? (podpowiedź: chujowy)",
+                options: ["Czerwony", "Żółty", "Biały", "Różowy"],
+                correct: 1
+            },
 
+            /* Specjalne pytania - wszystkie odpowiedzi są poprawne */
+            {
+                q: "Co w Tobie najbardziej lubię?",
+                options: ["Twój uśmiech", "Twoje oczy", "Twoje serduszko", "Wszystko!"],
+                correct: 99
+            },
+            /* Pytanie finałowe - dedykacja */
+            {
+                q: "Kto jest most hot und gogreous osobą na świecie?",
+                options: ["Julia Julstyna Wojdyła", "Juleczka fryteczka", "doch po co pytac", "WSZYSTKIE ODPOWIEDZI SĄ POPRAWNE!"],
+                correct: 99
+            }
+        ];
+
+        /* Przycisk NIE - element który będzie uciekał od kursora */
         const noBtn = document.getElementById('noBtn');
+        
+        /* Licznik ile razy użytkownik kliknie przycisk NIE */
         let dodgeCount = 0;
+        
+        /* Maksymalna liczba ucieczek przycisku NIE */
         const maxDodges = 10;
 
+        /* Inicjalizacja przyciska NIE */
         noBtn.style.transform = 'none';
         noBtn.textContent = 'nie :(';
         noBtn.style.background = '#ddd';
 
+        /* Funkcja obsługująca kliknięcie przycisku NIE - przycisk ucieka */
         function noClick() {
             dodgeCount++;
             if (dodgeCount < maxDodges) {
+                /* Zmiana pozycji przycisku na fixed aby mógł uciekać */
                 noBtn.style.position = 'fixed';
 
+                /* Losowa pozycja X i Y na ekranie */
                 const randomX = Math.random() * 80 + 10;
                 const randomY = Math.random() * 80 + 10;
 
+                /* Losowy obrót przycisku */
                 const rotate = (Math.random() - 0.5) * 40;
 
+                /* Płynna animacja przesunięcia przycisku */
                 noBtn.style.transition = 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
 
+                /* Ustawienie nowej pozycji przycisku */
                 noBtn.style.left = randomX + 'vw';
                 noBtn.style.top = randomY + 'vh';
 
+                /* Zastosowanie obrotu */
                 noBtn.style.transform = `rotate(${rotate}deg)`;
 
+                /* Zmiana tekstu na różne warianty */
                 noBtn.textContent = ['nie', 'nie?', 'NIEEEE', 'NO', 'nahhh', 'nołł', 'nein'][dodgeCount % 7];
+                
+                /* Zmiana koloru w zależności od liczby kliknięć */
                 noBtn.style.background = `hsl(${200 + dodgeCount * 10}, 70%, 85%)`;
 
+                /* Wysoki z-index aby przycisk był na wierzchu */
                 noBtn.style.zIndex = '9999';
 
             } else {
+                /* Po 10 ucieczkami przycisk zmienia się w TAK */
                 yesClick();
             }
         }
 
+        /* Funkcja obsługująca kliknięcie przycisku TAK - pokaż ekran sukcesu */
         function yesClick() {
+            /* Zmiana tekstu na ekranie sukcesu */
             document.getElementById('customText').textContent = 'Kocham Cię najbaaaaaaaaardziej na świecie ❤️';
 
+            /* Pobranie przycisku TAK */
             const yesBtn = document.querySelector('.yes-btn');
+            
+            /* Zmiana pozycji przycisku na fixed */
             yesBtn.style.position = 'fixed';
             yesBtn.style.top = '50%';
             yesBtn.style.left = '50%';
+            
+            /* Powiększenie przycisku do 5 razy i wycentrowanie */
             yesBtn.style.transform = 'translate(-50%, -50%) scale(5)';
             yesBtn.style.zIndex = '1000';
             yesBtn.style.transition = 'all 1s ease';
 
+            /* Po 800ms ukryj pytanie i pokaż ekran sukcesu */
             setTimeout(() => {
                 document.querySelector('.frame').style.display = 'none';
                 document.getElementById('navbar').style.display = 'none';
@@ -583,38 +799,62 @@ const questions = [
             }, 800);
         }
 
+        /* Funkcja tworząca efekt fajerwerków (spadające serduszka) */
         function createFireworks() {
+            /* Pobranie kontenera na serduszka */
             const heartsContainer = document.getElementById('hearts');
+            
+            /* Stworzenie 60 serduszek */
             for (let i = 0; i < 60; i++) {
                 setTimeout(() => {
+                    /* Stworzenie elementu div na serduszko */
                     const heart = document.createElement('div');
                     heart.className = 'heart';
+                    
+                    /* Losowy emoji serduszka */
                     heart.innerHTML = ['💖', '💕', '💗', '❤️'][Math.floor(Math.random() * 4)];
+                    
+                    /* Losowa pozycja X */
                     heart.style.left = Math.random() * 100 + '%';
+                    
+                    /* Losowy czas animacji */
                     heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                    
+                    /* Losowe opóźnienie animacji */
                     heart.style.animationDelay = Math.random() * 1 + 's';
+                    
+                    /* Dodanie serduszka do kontenera */
                     heartsContainer.appendChild(heart);
+                    
+                    /* Usunięcie serduszka po 6 sekundach */
                     setTimeout(() => heart.remove(), 6000);
                 }, i * 80);
             }
         }
 
+        /* Funkcja zamykająca ekran sukcesu i wracająca do pytania */
         function closeSuccess() {
+            /* Ukrycie ekranu sukcesu */
             document.getElementById('success').style.display = 'none';
 
+            /* Pokazanie głównej ramki z pytaniem */
             const frame = document.querySelector('.frame');
             frame.style.display = 'block';
 
+            /* Pokazanie nawigacji */
             document.getElementById('navbar').style.display = 'flex';
 
+            /* Pobranie przycisku TAK */
             const yesBtn = document.querySelector('.yes-btn');
 
+            /* Przywrócenie normalnych stylów przycisku */
             yesBtn.style.position = 'relative';
             yesBtn.style.top = 'auto';
             yesBtn.style.left = 'auto';
             yesBtn.style.transform = 'none';
             yesBtn.style.zIndex = '1';
 
+            /* Zmiana tekstu przycisku */
             yesBtn.textContent = "Świetna decyzja! 💖";
             yesBtn.disabled = true;
             yesBtn.style.cursor = 'default';
@@ -622,50 +862,101 @@ const questions = [
             yesBtn.style.padding = "20px 40px";
             yesBtn.style.lineHeight = "1.2";
 
+            /* Czyszczenie kontenera serduszek */
             document.getElementById('hearts').innerHTML = '';
         }
 
+
+        /* ============================================
+           SEKCJA MINIGRY - ŁAPANIE SERDUSZEK
+           ============================================ */
+
+        /* Pobranie elementu canvas */
         const canvas = document.getElementById('gameCanvas');
+        
+        /* Pobranie kontekstu 2D do rysowania na canvas */
         const ctx = canvas.getContext('2d');
+        
+        /* Pobranie kontenera na grę */
         const gameContainer = document.getElementById('gameContainer');
+        
+        /* Pobranie obrazu serduszka do gry */
         const targetImg = document.getElementById('targetImg');
 
+        /* Flaga czy gra jest w trakcie */
         let gameRunning = false;
+        
+        /* Ilość złapanych serduszek */
         let score = 0;
+        
+        /* Czas pozostały w grze (w sekundach) */
         let timeLeft = 30;
+        
+        /* ID pętli animacji */
         let gameLoopId;
+        
+        /* ID interwału timera */
         let timerInterval;
+        
+        /* Tablica strzał wypuszczanych przez gracza */
         let arrows = [];
+        
+        /* Tablica spadających serduszek do złapania */
         let targets = [];
+        
+        /* Tablica cząsteczek efektów */
         let particles = [];
+        
+        /* Pozycja X myszy */
         let mouseX = 0;
+        
+        /* Pozycja Y myszy */
         let mouseY = 0;
+        
+        /* Najlepszy wynik z localStorage */
         let localBestScore = localStorage.getItem('valBestScore') || 0;
 
+        /* Funkcja zmieniająca rozmiar canvas na rozmiar okna */
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
+        
+        /* Nasłuchiwanie na zmianę rozmiaru okna */
         window.addEventListener('resize', resizeCanvas);
 
+        /* Śledzenie pozycji myszy w grze */
         gameContainer.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
+        
+        /* Nasłuchiwanie na kliknięcie myszy - strzał */
         gameContainer.addEventListener('mousedown', shootArrow);
 
+        /* Funkcja uruchamiająca minigę */
         function startArcheryGame() {
+            /* Pokazanie kontenera gry */
             gameContainer.style.display = 'block';
+            
+            /* Próba przejścia w fullscreen (jeśli przeglądarka zezwala) */
             if (gameContainer.requestFullscreen) {
                 gameContainer.requestFullscreen();
             }
 
+            /* Dostosowanie rozmiaru canvas */
             resizeCanvas();
+            
+            /* Restart gry */
             restartGame();
         }
 
+        /* Funkcja restartująca grę */
         function restartGame() {
+            /* Ukrycie ekranu końca gry */
             document.getElementById('gameOverScreen').style.display = 'none';
+            
+            /* Reset wyników */
             score = 0;
             timeLeft = 30;
             arrows = [];
@@ -673,27 +964,41 @@ const questions = [
             particles = [];
             gameRunning = true;
 
+            /* Zaktualizowanie wyświetlania wyniku i czasu */
             document.getElementById('scoreVal').innerText = score;
             document.getElementById('timeVal').innerText = timeLeft;
 
+            /* Wyczyszczenie poprzedniego timera */
             clearInterval(timerInterval);
+            
+            /* Uruchomienie nowego timera */
             timerInterval = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timeVal').innerText = timeLeft;
                 if (timeLeft <= 0) endGame();
             }, 1000);
 
+            /* Anulowanie poprzedniej pętli animacji */
             cancelAnimationFrame(gameLoopId);
+            
+            /* Uruchomienie pętli gry */
             loop();
 
+            /* Uruchomienie spawnu serduszek */
             spawnTargets();
         }
 
+        /* Funkcja spawując spadające serduszka */
         function spawnTargets() {
             if (!gameRunning) return;
+            
+            /* Spawn nowego serduszka co 500ms */
             setTimeout(spawnTargets, 500);
 
+            /* Losowy rozmiar serduszka */
             const size = 60 + Math.random() * 40;
+            
+            /* Dodanie serduszka do tablicy */
             targets.push({
                 x: Math.random() * (canvas.width - 100),
                 y: -150,
@@ -703,14 +1008,18 @@ const questions = [
             });
         }
 
+        /* Funkcja obsługująca kliknięcie myszy - wysłanie strzału */
         function shootArrow() {
             if (!gameRunning) return;
 
+            /* Pozycja łuku gracza (środek ekranu, dół) */
             const bowX = canvas.width / 2;
             const bowY = canvas.height - 50;
 
+            /* Obliczenie kąta skierowania się do myszy */
             const angle = Math.atan2(mouseY - bowY, mouseX - bowX);
 
+            /* Dodanie strzału do tablicy */
             arrows.push({
                 x: bowX,
                 y: bowY,
@@ -720,47 +1029,65 @@ const questions = [
             });
         }
 
+        /* Funkcja kończąca grę */
         function endGame() {
+            /* Zatrzymanie gry */
             gameRunning = false;
             clearInterval(timerInterval);
             cancelAnimationFrame(gameLoopId);
 
+            /* Sprawdzenie czy wynik jest nowy rekord */
             if (score > localBestScore) {
                 localBestScore = score;
                 localStorage.setItem('valBestScore', localBestScore);
             }
 
+            /* Wyświetlenie wyników */
             document.getElementById('finalScore').innerText = score;
             document.getElementById('bestScore').innerText = localBestScore;
             document.getElementById('gameOverScreen').style.display = 'block';
         }
 
+        /* Funkcja zamykająca grę */
         function exitGame() {
+            /* Zatrzymanie gry */
             gameRunning = false;
             clearInterval(timerInterval);
             cancelAnimationFrame(gameLoopId);
+            
+            /* Ukrycie kontenera gry */
             gameContainer.style.display = 'none';
+            
+            /* Wyjście z fullscreen (jeśli aktywny) */
             if (document.exitFullscreen) document.exitFullscreen();
         }
 
+        /* Główna pętla gry */
         function loop() {
             if (!gameRunning) return;
 
+            /* Wyczyszczenie canvas */
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            /* Pozycja łuku */
             const bowX = canvas.width / 2;
             const bowY = canvas.height - 50;
             const angle = Math.atan2(mouseY - bowY, mouseX - bowX);
 
+            /* Rysowanie łuku */
             ctx.save();
             ctx.translate(bowX, bowY);
             ctx.rotate(angle);
+            
+            /* Linia łuku */
             ctx.beginPath();
             ctx.moveTo(0, -30);
             ctx.lineTo(0, 30);
             ctx.lineWidth = 2;
             ctx.strokeStyle = "white";
             ctx.stroke();
+            
+            /* Okrąg łuku */
             ctx.beginPath();
             ctx.arc(0, 0, 30, -Math.PI / 2, Math.PI / 2, false);
             ctx.lineWidth = 5;
@@ -768,11 +1095,15 @@ const questions = [
             ctx.stroke();
             ctx.restore();
 
+            /* Rysowanie i animacja strzał */
             for (let i = arrows.length - 1; i >= 0; i--) {
                 let a = arrows[i];
+                
+                /* Aktualizacja pozycji strzału */
                 a.x += a.vx;
                 a.y += a.vy;
 
+                /* Rysowanie strzału (emoji serduszka) */
                 ctx.save();
                 ctx.translate(a.x, a.y);
                 ctx.rotate(a.angle);
@@ -780,15 +1111,20 @@ const questions = [
                 ctx.fillText("💘", -15, 10);
                 ctx.restore();
 
+                /* Usunięcie strzału gdy wyjdzie poza ekran */
                 if (a.x < 0 || a.x > canvas.width || a.y < 0 || a.y > canvas.height) {
                     arrows.splice(i, 1);
                 }
             }
 
+            /* Rysowanie i animacja serduszek */
             for (let i = targets.length - 1; i >= 0; i--) {
                 let t = targets[i];
+                
+                /* Aktualizacja pozycji serduszka (spadanie) */
                 t.y += t.speed;
 
+                /* Rysowanie obrazu serduszka w kole */
                 ctx.save();
                 ctx.beginPath();
                 ctx.arc(t.x + t.size / 2, t.y + t.size / 2, t.size / 2, 0, Math.PI * 2);
@@ -797,28 +1133,37 @@ const questions = [
                 ctx.drawImage(t.img, t.x, t.y, t.size, t.size);
                 ctx.restore();
 
+                /* Rysowanie borderu wokół serduszka */
                 ctx.beginPath();
                 ctx.arc(t.x + t.size / 2, t.y + t.size / 2, t.size / 2, 0, Math.PI * 2);
                 ctx.lineWidth = 3;
                 ctx.strokeStyle = "#ff69b4";
                 ctx.stroke();
 
+                /* Usunięcie serduszka gdy wyjdzie poza ekran */
                 if (t.y > canvas.height) {
                     targets.splice(i, 1);
                 }
 
+                /* Sprawdzenie kolizji między strzałem a serduszkiem */
                 for (let j = arrows.length - 1; j >= 0; j--) {
                     let a = arrows[j];
+                    
+                    /* Obliczenie odległości między strzałem a serduszkiem */
                     let dx = a.x - (t.x + t.size / 2);
                     let dy = a.y - (t.y + t.size / 2);
                     let dist = Math.sqrt(dx * dx + dy * dy);
 
+                    /* Jeśli trafienie */
                     if (dist < t.size / 2) {
+                        /* Zwiększenie wyniku */
                         score++;
                         document.getElementById('scoreVal').innerText = score;
 
+                        /* Stworzenie efektów cząsteczek */
                         createParticles(t.x + t.size / 2, t.y + t.size / 2);
 
+                        /* Usunięcie strzału i serduszka */
                         arrows.splice(j, 1);
                         targets.splice(i, 1);
                         break;
@@ -826,12 +1171,16 @@ const questions = [
                 }
             }
 
+            /* Rysowanie i animacja cząsteczek */
             for (let i = particles.length - 1; i >= 0; i--) {
                 let p = particles[i];
+                
+                /* Aktualizacja pozycji cząsteczki */
                 p.x += p.vx;
                 p.y += p.vy;
                 p.life--;
 
+                /* Rysowanie cząsteczki z zanikającą przezroczystością */
                 ctx.globalAlpha = p.life / 20;
                 ctx.fillStyle = p.color;
                 ctx.beginPath();
@@ -839,13 +1188,17 @@ const questions = [
                 ctx.fill();
                 ctx.globalAlpha = 1;
 
+                /* Usunięcie cząsteczki gdy jej żywotność wynosi 0 */
                 if (p.life <= 0) particles.splice(i, 1);
             }
 
+            /* Wznowienie pętli */
             gameLoopId = requestAnimationFrame(loop);
         }
 
+        /* Funkcja tworząca efekty cząsteczek przy trafieniu */
         function createParticles(x, y) {
+            /* Stworzenie 10 cząsteczek */
             for (let i = 0; i < 10; i++) {
                 particles.push({
                     x: x,
@@ -859,96 +1212,157 @@ const questions = [
             }
         }
 
+
+
+        /* ============================================
+           SEKCJA QUIZU - LOGIKA PYTAŃ I ODPOWIEDZI
+           ============================================ */
+
+        /* Indeks aktualnego pytania */
         let currentQIndex = 0;
+        
+        /* Liczba poprawnych odpowiedzi */
         let quizScore = 0;
+        
+        /* Flaga czy można klikać odpowiedź */
         let canClick = true;
 
+        /* Pobranie elementu z tekstem pytania */
         const qText = document.getElementById('quiz-question');
+        
+        /* Pobranie wszystkich przycisków odpowiedzi */
         const qBtns = document.querySelectorAll('.quiz-btn');
+        
+        /* Pobranie licznika pytań */
         const qNum = document.getElementById('q-number');
 
-        // Uruchomienie quizu na start
+        /* Załadowanie pierwszego pytania przy starcie */
         loadQuestion();
 
+        /* Funkcja ładująca pytanie */
         function loadQuestion() {
+            /* Pobranie aktualnego pytania z tablicy */
             const current = questions[currentQIndex];
-            qText.innerText = current.q;
-            qNum.innerText = currentQIndex + 1;
             
-            // Reset przycisków
+            /* Wyświetlenie tekstu pytania */
+            qText.innerText = current.q;
+            
+            /* Zaktualizowanie licznika pytań */
+            qNum.innerText = currentQIndex + 1;
+
+            /* Aktualizacja tekstu przycisków odpowiedzi */
             qBtns.forEach((btn, index) => {
                 btn.innerText = current.options[index];
-                btn.className = 'quiz-btn'; // usuń kolory
+                btn.className = 'quiz-btn';
             });
+            
+            /* Umożliwienie klikania przycisków */
             canClick = true;
         }
 
+        /* Funkcja sprawdzająca odpowiedź */
         function checkAnswer(selectedOption) {
+            /* Jeśli nie można klikać, zignoruj */
             if (!canClick) return;
             canClick = false;
 
-            // Zabezpieczenie przed błędem undefined
+            /* Zabezpieczenie przed błędem */
             if (!questions[currentQIndex]) return;
 
+            /* Pobranie prawidłowej odpowiedzi */
             const correctOption = questions[currentQIndex].correct;
 
-            // Obsługa pytań specjalnych (99) i zwykłych
+            /* Obsługa pytań specjalnych (kod 99 = wszystkie odpowiedzi poprawne) */
             if (questions[currentQIndex].correct === 99) {
+                /* Zakolorowanie wybranej odpowiedzi na zielono */
                 qBtns[selectedOption].classList.add('correct');
                 quizScore++;
             } else {
+                /* Sprawdzenie czy odpowiedź jest poprawna */
                 if (selectedOption === correctOption) {
+                    /* Poprawna odpowiedź - kolor zielony */
                     qBtns[selectedOption].classList.add('correct');
                     quizScore++;
                 } else {
+                    /* Błędna odpowiedź - kolor czerwony */
                     qBtns[selectedOption].classList.add('wrong');
-                    // Pokaż poprawną (jeśli istnieje taki przycisk)
+                    
+                    /* Pokazanie prawidłowej odpowiedzi na zielono */
                     if(qBtns[correctOption]) {
                         qBtns[correctOption].classList.add('correct');
                     }
                 }
             }
 
+            /* Po 1.5 sekundy przejście do następnego pytania */
             setTimeout(() => {
+                /* Przejście do następnego pytania */
                 currentQIndex++;
                 if (currentQIndex < questions.length) {
+                    /* Załadowanie następnego pytania */
                     loadQuestion();
                 } else {
+                    /* Quiz skończony, pokaż wyniki */
                     showQuizResult();
                 }
             }, 1500);
         }
 
-
+        /* Funkcja wyświetlająca wyniki quizu */
         function showQuizResult() {
+            /* Ukrycie sekcji pytań */
             document.getElementById('quiz-box').style.display = 'none';
-            document.getElementById('quiz-result').style.display = 'block';
-            document.getElementById('quiz-score').innerText = quizScore;
             
+            /* Pokazanie sekcji wyniku */
+            document.getElementById('quiz-result').style.display = 'block';
+            
+            /* Wyświetlenie wyniku */
+            document.getElementById('quiz-score').innerText = quizScore;
+
+            /* Wybranie komendarza w zależności od wyniku */
             let comment = "";
             if(quizScore === 5) comment = "OŁ MAJ GORDZUSSS! ❤️";
             else if(quizScore >= 3) comment = "VERY GUTEN! 🥰";
             else comment = "TRY AGAIN GORDZUS 😘";
-            
+
+            /* Wyświetlenie komentarza */
             document.getElementById('quiz-comment').innerText = comment;
         }
 
-function resetQuiz() {
-    currentQIndex = 0;
-    quizScore = 0;
-    document.getElementById('quiz-box').style.display = 'block';
-    document.getElementById('quiz-result').style.display = 'none';
-    loadQuestion();
-}
+        /* Funkcja resetująca quiz */
+        function resetQuiz() {
+            /* Reset indeksu pytania */
+            currentQIndex = 0;
+            
+            /* Reset wyniku */
+            quizScore = 0;
+            
+            /* Pokazanie sekcji pytań */
+            document.getElementById('quiz-box').style.display = 'block';
+            
+            /* Ukrycie sekcji wyniku */
+            document.getElementById('quiz-result').style.display = 'none';
+            
+            /* Załadowanie pierwszego pytania */
+            loadQuestion();
+        }
 
-    // GRADIENT ŚLEDZĄCY MYSZKĘ
-document.addEventListener('mousemove', (e) => {
-    document.body.style.setProperty('--mouse-x', e.clientX + 'px');
-    document.body.style.setProperty('--mouse-y', e.clientY + 'px');
-});
+        /* ============================================
+           EFEKTY - ŚLEDZENIE MYSZY
+           ============================================ */
 
+        /* Śledzenie pozycji myszy dla efektu światła */
+        document.addEventListener('mousemove', (e) => {
+            /* Aktualizacja zmiennych CSS dla pozycji myszy */
+            document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+            document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+        });
 
     </script>
 </body>
 
 </html>
+
+
+           <!-- TU MUSZE DODAĆ ZDJĘCIA-->
+           <!-- Tutaj wpisz nazwy swoich plików ze zdjęciami -->
